@@ -7,6 +7,7 @@ import { StudentComponent } from './student/student.component';
 import { CreateStudentComponent } from './create-student/create-student.component';
 import { StudentDetailsComponent } from './student-details/student-details.component';
 import { StudentUpdateComponent } from './student-update/student-update.component';
+import { StudentListComponent } from './student-list/student-list.component';
 
 const routes: Routes = [
   {

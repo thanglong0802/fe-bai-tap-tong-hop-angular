@@ -15,10 +15,11 @@ export class StudentListComponent implements OnInit {
 
   students: StudentComponent[] = [];
   student: any;
+  studentFiler: StudentComponent[] = [];
 
-  pageSize: number = 10;
-  currentPage: number = 1;
-  textSearch!: string;
+  pageSize: number = 2;
+  currentPage: number = 0;
+  textSearch: string | null = null;
 
   constructor(
     private studentService: StudentServiceService,
@@ -27,7 +28,8 @@ export class StudentListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getStudents();
+    // this.getStudents();
+    this.search();
   }
 
   private getStudents() {
@@ -58,20 +60,34 @@ export class StudentListComponent implements OnInit {
 
   search() {
     console.log(this.textSearch);
-    const search = this.textSearch.trim();
-    this.studentService
-      .searchOrGetAll(this.pageSize, this.currentPage, search)
-      .subscribe(
-        (response) => {
-          console.log('Search', response);
-          if (response.content.length > 0) {
-            this.students = response.content;
+    if (this.textSearch == null) {
+      this.studentService
+        .searchOrGetAll(this.pageSize, this.currentPage, null)
+        .subscribe(
+          (response) => {
+            this.student = response;
+            this.students = this.student.content;
+          },
+          (error) => {
+            console.error('Error', error);
           }
-        },
-        (error) => {
-          console.error('Error', error);
-        }
-      );
+        );
+    } else {
+      this.studentService
+        .searchOrGetAll(this.pageSize, this.currentPage, this.textSearch.trim())
+        .subscribe(
+          (response) => {
+            console.log('Search', response);
+            if (response) {
+              this.student = response;
+              this.students = this.student.content;
+            }
+          },
+          (error) => {
+            console.error('Error', error);
+          }
+        );
+    }
     this.resetInput();
   }
 
@@ -81,5 +97,32 @@ export class StudentListComponent implements OnInit {
 
   previous() {
     console.log('previous');
+  }
+
+  next() {}
+
+  nextPage() {
+    const totalPages = Math.ceil(this.student.totalElements / this.pageSize);
+    console.log(this.student.totalElements);
+    console.log(this.pageSize);
+    console.log(totalPages);
+
+    if (this.currentPage < totalPages - 1) {
+      this.currentPage = this.currentPage + 1;
+      console.log(this.currentPage);
+
+      this.studentFiler = [];
+      const startIndex = this.currentPage * this.pageSize;
+      const endIndex = Math.min(
+        (this.currentPage + 1) * this.pageSize,
+        this.students.length
+      );
+
+      for (let i = startIndex; i < endIndex; i++) {
+        this.studentFiler.push(this.students[i]);
+      }
+
+      console.log(this.studentFiler);
+    }
   }
 }

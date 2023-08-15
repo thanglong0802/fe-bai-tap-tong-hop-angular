@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../service/user.service';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthComponent } from '../user/auth.component';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
   login(form: NgForm) {
     this.userService.userLogin(this.userName, this.password).subscribe(
       (response) => {
+        // this.authComponent.token = response;
         localStorage.setItem('authencation-user', JSON.stringify(response));
         console.log('Login successfully', response);
         this.router.navigate(['/student']);

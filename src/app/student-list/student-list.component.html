@@ -55,20 +55,24 @@
 
   <nav aria-label="...">
     <ul class="pagination">
-      <li class="page-item" *ngClass="{ disabled: currentPage === 0 }">
-        <!-- <li class="page-item"> -->
+      <!-- <li class="page-item">
         <a class="page-link" tabindex="-1" (click)="previous()">Previous</a>
+      </li> -->
+      <!-- <li class="page-item">
+        <a class="page-link" (click)="nextPage(0)">1</a>
+      </li> -->
+      <li class="page-item">
+        <a class="page-link" (click)="nextPage()">Next</a>
       </li>
-      <li class="page-item"><a class="page-link" href="#">1</a></li>
-      <li class="page-item active" aria-current="page">
+      <!-- <li class="page-item active" aria-current="page">
         <a class="page-link" href="#"
           >2 <span class="visually-hidden">(current)</span></a
         >
-      </li>
-      <li class="page-item"><a class="page-link" href="#">3</a></li>
-      <li class="page-item">
-        <a class="page-link" href="#">Next</a>
-      </li>
+      </li> -->
+      <!-- <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+      <!-- <li class="page-item">
+        <a class="page-link" (click)="next()">Next</a>
+      </li> -->
     </ul>
   </nav>
 </div>

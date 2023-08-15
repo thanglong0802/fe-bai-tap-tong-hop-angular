@@ -67,9 +67,9 @@ export class StudentServiceService {
   searchOrGetAll(
     pageSize: number,
     currentPage: number,
-    textSearch: string
-  ): Observable<any> {
-    return this.htppClient.post(`${this.baseUrl}/search`, {
+    textSearch: string | null = null
+  ): Observable<StudentComponent[]> {
+    return this.htppClient.post<StudentComponent[]>(`${this.baseUrl}/search`, {
       pageSize,
       currentPage,
       textSearch,
