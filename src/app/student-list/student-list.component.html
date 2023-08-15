@@ -1,0 +1,74 @@
+<div>
+  <div class="input-group text-search">
+    <div class="form-outline">
+      <input
+        type="search"
+        id="form1"
+        name="form1"
+        class="form-control"
+        placeholder="Search"
+        [(ngModel)]="textSearch"
+      />
+    </div>
+    <button type="button" class="btn btn-primary" (click)="search()">
+      Search
+    </button>
+  </div>
+
+  <div>
+    <a href="#" routerLink="/create" class="btn btn-primary"
+      >Create New Student</a
+    >
+    <h2>Student List</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Full Name</th>
+          <th>Age</th>
+          <th>Phone number</th>
+          <th>Date of birth</th>
+          <th>Introduce</th>
+          <th>Email</th>
+          <th>Majors</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let student of students">
+          <td>{{ student.name }}</td>
+          <td>{{ student.age }}</td>
+          <td>{{ student.phoneNumber }}</td>
+          <td>{{ student.dob | date : "dd/MM/yyyy HH:mm:ss" }}</td>
+          <td>{{ student.intro }}</td>
+          <td>{{ student.email }}</td>
+          <td>{{ student.majors }}</td>
+          <td>
+            <a class="btn btn-info" (click)="details(student.id)">View</a>
+            <a class="btn btn-primary" (click)="update(student.id)">Edit</a>
+            <button (click)="deleteStudent(student.id)" class="btn btn-danger">
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <nav aria-label="...">
+    <ul class="pagination">
+      <li class="page-item" *ngClass="{ disabled: currentPage === 0 }">
+        <!-- <li class="page-item"> -->
+        <a class="page-link" tabindex="-1" (click)="previous()">Previous</a>
+      </li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item active" aria-current="page">
+        <a class="page-link" href="#"
+          >2 <span class="visually-hidden">(current)</span></a
+        >
+      </li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item">
+        <a class="page-link" href="#">Next</a>
+      </li>
+    </ul>
+  </nav>
+</div>

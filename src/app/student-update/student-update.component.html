@@ -1,0 +1,102 @@
+<div class="container">
+  <h2>Update Student</h2>
+
+  <a href="#" routerLink="/student" class="btn btn-primary">Back</a>
+
+  <form #form="ngForm" (ngSubmit)="submit(form)">
+    <div class="form-outline flex-fill mb-0">
+      <label for="name">Full Name</label>
+      <input
+        name="name"
+        id="name"
+        type="text"
+        class="form-control"
+        [(ngModel)]="update.name"
+      />
+      <!-- <div
+          *ngIf="f['title'].touched && f['title'].invalid"
+          class="alert alert-danger"
+        >
+          <div *ngIf="f['title'].errors && f['title'].errors['required']">
+            Title is required.
+          </div>
+        </div> -->
+    </div>
+
+    <div class="form-outline flex-fill mb-0">
+      <label for="age">Age</label>
+      <input
+        name="age"
+        id="age"
+        type="text"
+        class="form-control"
+        [(ngModel)]="update.age"
+      />
+      <!-- <div
+          *ngIf="f['body'].touched && f['body'].invalid"
+          class="alert alert-danger"
+        >
+          <div *ngIf="f['body'].errors && f['body'].errors['required']">
+            Body is required.
+          </div>
+        </div> -->
+    </div>
+
+    <div class="form-outline flex-fill mb-0">
+      <label for="phoneNumber">Phone number</label>
+      <input
+        name="phoneNumber"
+        id="phoneNumber"
+        type="text"
+        class="form-control"
+        [(ngModel)]="update.phoneNumber"
+      />
+    </div>
+
+    <div class="form-outline flex-fill mb-0">
+      <label for="dob">Date of birth</label>
+      <input
+        name="dob"
+        id="dob"
+        type="text"
+        class="form-control"
+        [(ngModel)]="update.dob"
+      />
+    </div>
+
+    <div class="form-outline flex-fill mb-0">
+      <label for="intro">Introduce</label>
+      <input
+        name="intro"
+        id="intro"
+        type="text"
+        class="form-control"
+        [(ngModel)]="update.intro"
+      />
+    </div>
+
+    <div class="form-outline flex-fill mb-0">
+      <label for="email">Email</label>
+      <input
+        name="email"
+        id="email"
+        type="text"
+        class="form-control"
+        [(ngModel)]="update.email"
+      />
+    </div>
+
+    <div class="form-outline flex-fill mb-0">
+      <label for="majors">Major</label>
+      <input
+        name="majors"
+        id="majors"
+        type="text"
+        class="form-control"
+        [(ngModel)]="update.majors"
+      />
+    </div>
+
+    <button class="btn btn-primary" type="submit">Submit</button>
+  </form>
+</div>

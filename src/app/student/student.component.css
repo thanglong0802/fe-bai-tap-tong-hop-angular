@@ -1,0 +1,4 @@
+.student-sup {
+  display: flex;
+  flex-direction: column;
+}

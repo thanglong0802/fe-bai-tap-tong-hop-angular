@@ -1,0 +1,28 @@
+<div class="container">
+  <a routerLink="/student" class="btn btn-primary">Back</a>
+  <h2>Student Details</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Full Name</th>
+        <th>Age</th>
+        <th>Phone number</th>
+        <th>Date of birth</th>
+        <th>Introduce</th>
+        <th>Email</th>
+        <th>Majors</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ student.name }}</td>
+        <td>{{ student.age }}</td>
+        <td>{{ student.phoneNumber }}</td>
+        <td>{{ student.dob | date : "dd/MM/yyyy HH:mm:ss" }}</td>
+        <td>{{ student.intro }}</td>
+        <td>{{ student.email }}</td>
+        <td>{{ student.majors }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

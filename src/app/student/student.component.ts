@@ -8,13 +8,24 @@ import { Component, Inject } from '@angular/core';
 export class StudentComponent {
   constructor() {
     this.id = 0;
-    this.firstName = '';
-    this.lastName = '';
+    this.name = '';
+    this.age = 0;
+    this.phoneNumber = '';
+    this.intro = '';
     this.email = '';
+    this.majors = '';
+    this.isDelete = false;
   }
 
   id: number;
-  firstName: string;
-  lastName: string;
-  email: string | undefined;
+  name: string;
+  age: number;
+  phoneNumber: string;
+  dob!: Date;
+  intro: string;
+  email: string;
+  majors: string;
+  createDate!: Date;
+  lastUpdate!: Date;
+  isDelete: boolean;
 }
