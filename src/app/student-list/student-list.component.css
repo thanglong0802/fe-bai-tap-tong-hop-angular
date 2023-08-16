@@ -1,7 +1,38 @@
+#student-list-component {
+  display: flex;
+  flex-direction: column;
+}
+
 .text-search {
   justify-content: flex-end;
 }
 
 .text-search #form1 {
   width: 400px;
+}
+/* 
+#hohohehe {
+  justify-content: center;
+} */
+
+#hohohehe .pagination .page-item :hover {
+  cursor: pointer;
+}
+
+nav .pagination .page-item:not(.disabled):hover {
+  cursor: pointer;
+}
+
+nav .pagination .page-item.disabled:hover {
+  cursor: not-allowed;
+}
+
+#pagination-1 {
+  display: flex;
+  justify-content: center;
+}
+
+#pagination-2 {
+  display: flex;
+  justify-content: center;
 }

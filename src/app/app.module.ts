@@ -11,12 +11,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { UserComponent } from './user/user.component';
 import { SignupAdminComponent } from './signup-admin/signup-admin.component';
-import { DatePipe } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { CreateStudentComponent } from './create-student/create-student.component';
 import { StudentDetailsComponent } from './student-details/student-details.component';
 import { AuthComponent } from './user/auth.component';
 import { StudentUpdateComponent } from './student-update/student-update.component';
-import { StudentSearchComponent } from './student-search/student-search.component';
+import { HeaderComponent } from './header/header.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { StudentSearchComponent } from './student-search/student-search.componen
     CreateStudentComponent,
     StudentDetailsComponent,
     StudentUpdateComponent,
-    StudentSearchComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,6 +39,7 @@ import { StudentSearchComponent } from './student-search/student-search.componen
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    CommonModule,
   ],
   providers: [
     DatePipe,

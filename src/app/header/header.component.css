@@ -1,0 +1,29 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  background-color: #444;
+  height: auto;
+}
+
+header #logo .logo-img {
+  height: 60px;
+  width: auto;
+}
+
+header p {
+  color: #fff;
+  font-size: 20px;
+  padding: 10px;
+  align-items: center;
+}
+
+header p a {
+  text-decoration: none;
+  color: #fff;
+}
