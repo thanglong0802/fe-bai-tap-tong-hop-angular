@@ -24,11 +24,11 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('authencation-user', JSON.stringify(response));
         console.log('Login successfully', response);
         this.router.navigate(['/student']);
+        form.resetForm();
       },
       (error) => {
         console.error('Login failed', error);
       }
     );
-    form.resetForm();
   }
 }

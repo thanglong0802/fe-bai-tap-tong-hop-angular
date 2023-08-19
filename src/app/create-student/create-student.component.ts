@@ -29,11 +29,11 @@ export class CreateStudentComponent {
       .subscribe(
         (response) => {
           console.log('Create successfully', response);
+          form.resetForm();
         },
         (error) => {
           console.error('Create failed', error);
         }
       );
-    form.resetForm();
   }
 }

@@ -14,6 +14,7 @@ export class StudentComponent {
     this.intro = '';
     this.email = '';
     this.majors = '';
+    this.userName = '';
     this.isDelete = false;
   }
 
@@ -25,6 +26,7 @@ export class StudentComponent {
   intro: string;
   email: string;
   majors: string;
+  userName: string;
   createDate!: Date;
   lastUpdate!: Date;
   isDelete: boolean;

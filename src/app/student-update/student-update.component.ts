@@ -46,9 +46,9 @@ export class StudentUpdateComponent implements OnInit {
       .subscribe(
         (response) => {
           console.log('Update successfully', response);
+          form.resetForm();
         },
         (error) => console.error('Error', error)
       );
-    form.resetForm();
   }
 }

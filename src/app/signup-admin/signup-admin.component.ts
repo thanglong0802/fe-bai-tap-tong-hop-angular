@@ -30,6 +30,7 @@ export class SignupAdminComponent {
         .subscribe(
           (response) => {
             console.log('Register successfully', response);
+            form.resetForm();
           },
           (error) => {
             console.log('Register failed', error);
@@ -38,6 +39,5 @@ export class SignupAdminComponent {
     } else {
       console.log('Mat khau khong trung khop');
     }
-    form.resetForm();
   }
 }

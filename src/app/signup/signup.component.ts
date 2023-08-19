@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { UserService } from '../service/user.service';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -12,18 +13,21 @@ export class SignupComponent {
   password!: string;
   repeatPassword!: string;
   email!: string;
+  phoneNumber!: string;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private router: Router) {}
 
   // @ViewChild('form') form!: NgForm;
 
   signup(form: NgForm) {
     if (this.password === this.repeatPassword) {
       this.userService
-        .userSignup(this.username, this.password, this.email)
+        .userSignup(this.username, this.password, this.email, this.phoneNumber)
         .subscribe(
           (response) => {
-            console.log('Register successfully', response);
+            console.log(response);
+            form.resetForm();
+            this.router.navigate(['/login']);
           },
           (error) => {
             console.log('Register failed', error);
@@ -32,6 +36,5 @@ export class SignupComponent {
     } else {
       console.log('Mat khau khong trung khop');
     }
-    form.resetForm();
   }
 }

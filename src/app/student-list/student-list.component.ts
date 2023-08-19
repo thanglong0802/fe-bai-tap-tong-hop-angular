@@ -25,6 +25,9 @@ export class StudentListComponent implements OnInit {
 
   totalPagess: number[] = [];
 
+  // Biến lưu trữ username login
+  userInfo: any = localStorage.getItem('authencation-user');
+
   constructor(
     private studentService: StudentServiceService,
     private date: DatePipe,

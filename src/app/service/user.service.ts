@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -21,14 +21,19 @@ export class UserService {
   userSignup(
     username: string,
     password: string,
-    email: string
+    email: string,
+    phoneNumber: string
   ): Observable<any> {
     const body = {
       username,
       password,
       email,
+      phoneNumber,
     };
-    return this.htppClient.post(`${this.baseUrl}`, body);
+    return this.htppClient.post(`${this.baseUrl}`, body, {
+      headers: new HttpHeaders().set('Content-Type', 'application/json'),
+      responseType: 'text',
+    });
   }
 
   userSignupWithAdmin(
@@ -43,6 +48,9 @@ export class UserService {
       email,
       role,
     };
-    return this.htppClient.post(`${this.baseUrl}/admin`, body);
+    return this.htppClient.post(`${this.baseUrl}/admin`, body, {
+      headers: new HttpHeaders().set('Content-Type', 'application/json'),
+      responseType: 'text',
+    });
   }
 }
