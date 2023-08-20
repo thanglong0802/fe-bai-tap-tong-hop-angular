@@ -38,10 +38,18 @@
               id="form3Example3"
               name="email"
               class="form-control form-control-lg"
-              placeholder="Enter a valid email address"
+              placeholder="Enter a valid user name"
               [(ngModel)]="userName"
+              (blur)="validateUserName()"
+              (change)="validateUserName()"
             />
-            <label class="form-label" for="form3Example3">Email address</label>
+            <!-- <label class="form-label" for="form3Example3">User Name</label> -->
+            <p
+              style="color: #ff0000"
+              *ngIf="userName === '' && userNameTouched"
+            >
+              User name không được để trống
+            </p>
           </div>
 
           <!-- Password input -->
@@ -53,8 +61,16 @@
               class="form-control form-control-lg"
               placeholder="Enter password"
               [(ngModel)]="password"
+              (blur)="validatePassword()"
+              (change)="validatePassword()"
             />
-            <label class="form-label" for="form3Example4">Password</label>
+            <!-- <label class="form-label" for="form3Example4">Password</label> -->
+            <p
+              style="color: #ff0000"
+              *ngIf="password === '' && passwordTouched"
+            >
+              Password không được để trống
+            </p>
           </div>
 
           <div class="d-flex justify-content-between align-items-center">

@@ -19,7 +19,8 @@
                 <form
                   #form="ngForm"
                   class="mx-1 mx-md-4"
-                  (ngSubmit)="signup(form)"
+                  [formGroup]="signupForm"
+                  (ngSubmit)="signupFormSubmit()"
                 >
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-user fa-lg me-3 fa-fw"></i>
@@ -29,11 +30,27 @@
                         id="form3Example1c"
                         name="username"
                         class="form-control"
-                        [(ngModel)]="username"
+                        placeholder="Enter user name"
+                        formControlName="usernames"
                       />
-                      <label class="form-label" for="form3Example1c"
+                      <div style="color: #ff0000">
+                        <div
+                          *ngIf="
+                            signupForm.get('usernames')?.hasError('required') &&
+                            signupForm.get('usernames')?.touched
+                          "
+                        >
+                          User name field is required.
+                        </div>
+                        <div
+                          *ngIf="signupForm.get('usernames')?.errors?.['minlength']"
+                        >
+                          User name must be at least 4 characters long
+                        </div>
+                      </div>
+                      <!-- <label class="form-label" for="form3Example1c"
                         >User Name</label
-                      >
+                      > -->
                     </div>
                   </div>
 
@@ -45,11 +62,30 @@
                         id="form3Example3c"
                         name="email"
                         class="form-control"
-                        [(ngModel)]="email"
+                        placeholder="Enter your email"
+                        formControlName="emails"
                       />
-                      <label class="form-label" for="form3Example3c"
+                      <div style="color: #ff0000">
+                        <div
+                          *ngIf="
+                            signupForm.get('emails')?.hasError('required') &&
+                            signupForm.get('emails')?.touched
+                          "
+                        >
+                          Emails field is required.
+                        </div>
+                        <div
+                          *ngIf="
+                            signupForm.get('emails')?.hasError('email') &&
+                            signupForm.get('emails')?.touched
+                          "
+                        >
+                          Please enter a valid email.
+                        </div>
+                      </div>
+                      <!-- <label class="form-label" for="form3Example3c"
                         >Your Email</label
-                      >
+                      > -->
                     </div>
                   </div>
 
@@ -61,11 +97,23 @@
                         id="form3Example30c"
                         name="phoneNumber"
                         class="form-control"
-                        [(ngModel)]="phoneNumber"
+                        placeholder="Enter phone number"
+                        formControlName="phoneNumbers"
                       />
-                      <label class="form-label" for="form3Example30c"
-                        >Phone Number</label
+                      <div
+                        *ngIf="
+                          signupForm
+                            .get('phoneNumbers')
+                            ?.hasError('required') &&
+                          signupForm.get('phoneNumbers')?.touched
+                        "
+                        style="color: #ff0000"
                       >
+                        Phone numbers field is required.
+                      </div>
+                      <!-- <label class="form-label" for="form3Example30c"
+                        >Phone Number</label
+                      > -->
                     </div>
                   </div>
 
@@ -77,11 +125,21 @@
                         id="form3Example4c"
                         name="password"
                         class="form-control"
-                        [(ngModel)]="password"
+                        placeholder="Enter password"
+                        formControlName="passwords"
                       />
-                      <label class="form-label" for="form3Example4c"
-                        >Password</label
+                      <div
+                        *ngIf="
+                          signupForm.get('passwords')?.hasError('required') &&
+                          signupForm.get('passwords')?.touched
+                        "
+                        style="color: #ff0000"
                       >
+                        Password field is required.
+                      </div>
+                      <!-- <label class="form-label" for="form3Example4c"
+                        >Password</label
+                      > -->
                     </div>
                   </div>
 
@@ -93,19 +151,37 @@
                         id="form3Example4cd"
                         name="repeatPassword"
                         class="form-control"
-                        [(ngModel)]="repeatPassword"
+                        placeholder="Enter repeat password"
+                        formControlName="repeatPasswords"
                       />
-                      <label class="form-label" for="form3Example4cd"
-                        >Repeat your password</label
+                      <div
+                        *ngIf="
+                          signupForm
+                            .get('repeatPasswords')
+                            ?.hasError('required') &&
+                          signupForm.get('repeatPasswords')?.touched
+                        "
+                        style="color: #ff0000"
                       >
+                        Repeat password field is required.
+                      </div>
+                      <!-- <label class="form-label" for="form3Example4cd"
+                        >Repeat your password</label
+                      > -->
                     </div>
                   </div>
-
+                  <p>Complete the form to enable button.</p>
+                  <p>Form Status: {{ signupForm.status }}</p>
+                  <!-- <p>Form Status: {{ signupForm.valid }}</p> -->
                   <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                     <button
                       type="submit"
                       class="btn btn-primary btn-lg"
-                      [disabled]="password !== repeatPassword"
+                      [disabled]="
+                        signupForm.invalid ||
+                        signupForm.get('passwords')?.value !==
+                          signupForm.get('repeatPasswords')?.value
+                      "
                     >
                       Register
                     </button>

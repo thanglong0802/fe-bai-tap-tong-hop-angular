@@ -12,6 +12,8 @@ import { AuthComponent } from '../user/auth.component';
 export class LoginComponent implements OnInit {
   userName!: string;
   password!: string;
+  userNameTouched: boolean = false;
+  passwordTouched: boolean = false;
 
   constructor(private userService: UserService, private router: Router) {}
 
@@ -30,5 +32,19 @@ export class LoginComponent implements OnInit {
         console.error('Login failed', error);
       }
     );
+  }
+
+  validateUserName() {
+    if (!this.userName) {
+      this.userName = '';
+    }
+    this.userNameTouched = true;
+  }
+
+  validatePassword() {
+    if (!this.password) {
+      this.password = '';
+    }
+    this.passwordTouched = true;
   }
 }

@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { UserService } from '../service/user.service';
-import { NgForm } from '@angular/forms';
+import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,6 +14,19 @@ export class SignupComponent {
   repeatPassword!: string;
   email!: string;
   phoneNumber!: string;
+
+  userName = new FormControl('');
+
+  signupForm = new FormGroup({
+    usernames: new FormControl('', [
+      Validators.required,
+      Validators.minLength(4),
+    ]),
+    passwords: new FormControl('', Validators.required),
+    repeatPasswords: new FormControl('', Validators.required),
+    emails: new FormControl('', [Validators.required, Validators.email]),
+    phoneNumbers: new FormControl('', Validators.required),
+  });
 
   constructor(private userService: UserService, private router: Router) {}
 
@@ -36,5 +49,12 @@ export class SignupComponent {
     } else {
       console.log('Mat khau khong trung khop');
     }
+  }
+
+  signupFormSubmit() {
+    console.log(this.signupForm.value);
+    console.log(this.signupForm.get('usernames'));
+    return this.signupForm.get('passwords')?.value;
+    // this.signupForm.reset();
   }
 }
