@@ -28,6 +28,8 @@ export class CreateStudentComponent {
       )
       .subscribe(
         (response) => {
+          console.log(this.create.dob);
+
           console.log('Create successfully', response);
           form.resetForm();
         },

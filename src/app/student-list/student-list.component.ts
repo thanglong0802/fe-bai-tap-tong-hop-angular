@@ -28,6 +28,8 @@ export class StudentListComponent implements OnInit {
   // Biến lưu trữ username login
   userInfo: any = localStorage.getItem('authencation-user');
 
+  userInfoParse = JSON.parse(this.userInfo);
+
   constructor(
     private studentService: StudentServiceService,
     private date: DatePipe,
@@ -37,6 +39,7 @@ export class StudentListComponent implements OnInit {
   ngOnInit(): void {
     // this.getStudents();
     this.search();
+    console.log(this.userInfoParse);
   }
 
   // onChange(event: any) {
@@ -71,35 +74,52 @@ export class StudentListComponent implements OnInit {
   }
 
   search() {
-    if (this.textSearch == null) {
-      this.studentService
-        .searchOrGetAll(this.pageSize, this.currentPage, null)
-        .subscribe(
-          (response) => {
-            this.student = response;
-            this.students = this.student.content;
-            this.useStudentData(this.student);
-          },
-          (error) => {
-            console.error('Error', error);
-          }
-        );
+    if (this.userInfoParse.role === 'USER') {
+      this.studentService.findByUserName(this.userInfoParse.username).subscribe(
+        (response) => {
+          console.log(response);
+
+          this.students = response;
+        },
+        (error) => {
+          console.error('Error', error);
+        }
+      );
     } else {
-      this.studentService
-        .searchOrGetAll(this.pageSize, this.currentPage, this.textSearch.trim())
-        .subscribe(
-          (response) => {
-            console.log('Search', response);
-            if (response) {
+      if (this.textSearch == null) {
+        this.studentService
+          .searchOrGetAll(this.pageSize, this.currentPage, null)
+          .subscribe(
+            (response) => {
               this.student = response;
               this.students = this.student.content;
               this.useStudentData(this.student);
+            },
+            (error) => {
+              console.error('Error', error);
             }
-          },
-          (error) => {
-            console.error('Error', error);
-          }
-        );
+          );
+      } else {
+        this.studentService
+          .searchOrGetAll(
+            this.pageSize,
+            this.currentPage,
+            this.textSearch.trim()
+          )
+          .subscribe(
+            (response) => {
+              console.log('Search', response);
+              if (response) {
+                this.student = response;
+                this.students = this.student.content;
+                this.useStudentData(this.student);
+              }
+            },
+            (error) => {
+              console.error('Error', error);
+            }
+          );
+      }
     }
     // this.resetInput();
   }

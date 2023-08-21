@@ -10,6 +10,7 @@ import { NgForm } from '@angular/forms';
 export class SignupAdminComponent {
   username!: string;
   password!: string;
+  phoneNumber!: string;
   repeatPassword!: string;
   email!: string;
   role!: string;
@@ -24,6 +25,7 @@ export class SignupAdminComponent {
         .userSignupWithAdmin(
           this.username,
           this.password,
+          this.phoneNumber,
           this.email,
           this.role
         )

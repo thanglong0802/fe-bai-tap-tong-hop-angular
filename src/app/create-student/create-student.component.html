@@ -53,12 +53,23 @@
       />
     </div>
 
-    <div class="form-outline flex-fill mb-0">
-      <label for="dob">Date of birth</label>
+    <!-- <div class="form-outline flex-fill mb-0">
+      <label for="dob"></label>
       <input
         name="dob"
         id="dob"
         type="text"
+        class="form-control"
+        [(ngModel)]="create.dob"
+      />
+    </div> -->
+
+    <div class="md-form md-outline input-with-post-icon datepicker">
+      <label for="dob">Date of birth</label>
+      <input
+        placeholder="Select date"
+        type="date"
+        name="dob"
         class="form-control"
         [(ngModel)]="create.dob"
       />

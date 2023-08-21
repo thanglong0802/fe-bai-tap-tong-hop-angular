@@ -39,12 +39,14 @@ export class UserService {
   userSignupWithAdmin(
     username: string,
     password: string,
+    phoneNumber: string,
     email: string,
     role: string
   ): Observable<any> {
     const body = {
       username,
       password,
+      phoneNumber,
       email,
       role,
     };

@@ -75,4 +75,10 @@ export class StudentServiceService {
       textSearch,
     });
   }
+
+  findByUserName(userName: string): Observable<StudentComponent[]> {
+    return this.htppClient.get<StudentComponent[]>(
+      `${this.baseUrl}/find-username?userName=${userName}`
+    );
+  }
 }
